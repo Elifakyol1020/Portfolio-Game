@@ -1,0 +1,287 @@
+{
+  "interactions": [
+    {
+      "id": "intro_start",
+      "area": "player_spawn",
+      "textKey": "intro.start",
+      "type": "hint",
+      "trigger": "enter",
+      "once": true
+    },
+    {
+      "id": "player_spawn_text",
+      "area": "player_spawn",
+      "textKey": "player.spawn",
+      "type": "hint",
+      "trigger": "enter",
+      "once": true
+    },
+    {
+      "id": "contact_area",
+      "area": "contact_area",
+      "textKey": "contact",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "about_me_area",
+      "area": "about_me",
+      "textKey": "about.me",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "about_me_house",
+      "area": "about_me_house",
+      "textKey": "about.me.house",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "picnic_area",
+      "area": "picnic_area",
+      "textKey": "picnic.area",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "cherry_trees",
+      "area": "cherry_trees",
+      "textKey": "cherry.trees",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "strawberry_area",
+      "area": "strawberry_area",
+      "textKey": "strawberry.area",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "path_1",
+      "area": "path_1",
+      "textKey": "path.1",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "experience_sca_social",
+      "area": "experience_sca_social",
+      "textKey": "experience.sca",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "experience_inonu_digital",
+      "area": "experience_inonu_digital",
+      "textKey": "experience.inonu",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "experience_iotiq_area",
+      "area": "experience_iotiq",
+      "textKey": "experience.iotiq",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "path_2",
+      "area": "path_2",
+      "textKey": "path.2",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "school_sign_area",
+      "area": "school_sign",
+      "textKey": "school.sign",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "about_me_school",
+      "area": "about_me_school",
+      "textKey": "about.me.school",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "apricot_trees",
+      "area": "apricot_trees",
+      "textKey": "apricot.trees",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "story_continues",
+      "area": "story_continues",
+      "textKey": "story.continues",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "skill_frontend",
+      "area": "frontend",
+      "textKey": "skill.frontend",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "skill_backend",
+      "area": "backend",
+      "textKey": "skill.backend",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "skill_devops",
+      "area": "devops",
+      "textKey": "skill.devops",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "skill_database_data",
+      "area": "database_data",
+      "textKey": "skill.database_data",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "skill_git",
+      "area": "git",
+      "textKey": "skill.git",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "skill_mobile",
+      "area": "mobile",
+      "textKey": "skill.mobile",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "skill_testing",
+      "area": "testing",
+      "textKey": "skill.testing",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "house_enter",
+      "area": "house_enter",
+      "textKey": "house.enter",
+      "type": "portal",
+      "trigger": "enter",
+      "targetMap": "house_inside",
+      "targetSpawn": "house_door_in"
+    },
+    {
+      "id": "house_exit",
+      "area": "house_exit",
+      "textKey": "house.exit",
+      "type": "portal",
+      "trigger": "enter",
+      "targetMap": "portfolio",
+      "targetSpawn": "house_door_out"
+    },
+    {
+      "id": "house_bed",
+      "area": "bed",
+      "textKey": "house.bed",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "house_computer",
+      "area": "computer",
+      "textKey": "house.computer",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "house_book",
+      "area": "book",
+      "textKey": "house.book",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "house_instrument",
+      "area": "instrument",
+      "textKey": "house.instrument",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "house_hobby_room",
+      "area": "hoby_room",
+      "textKey": "house.hobby_room",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "house_toy",
+      "area": "toy",
+      "textKey": "house.toy",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "house_draw",
+      "area": "draw",
+      "textKey": "house.draw",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "house_tv_area",
+      "area": "tv_area",
+      "textKey": "house.tv_area",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "house_kitchen_room",
+      "area": "kitchen_room",
+      "textKey": "house.kitchen_room",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "school_enter",
+      "area": "school_enter",
+      "textKey": "school.enter",
+      "type": "portal",
+      "trigger": "enter",
+      "targetMap": "school_inside",
+      "targetSpawn": "school_door_in"
+    },
+    {
+      "id": "school_exit",
+      "area": "school_exit",
+      "textKey": "school.exit",
+      "type": "portal",
+      "trigger": "enter",
+      "targetMap": "portfolio",
+      "targetSpawn": "school_door_out"
+    },
+    {
+      "id": "school_class_area",
+      "area": "class_area",
+      "textKey": "school.class_area",
+      "type": "hint",
+      "trigger": "enter"
+    },
+    {
+      "id": "school_library_area",
+      "area": "library_area",
+      "textKey": "school.library_area",
+      "type": "hint",
+      "trigger": "enter"
+    }
+  ]
+}
