@@ -2,7 +2,7 @@
   "intro.start": {
     "tr": {
       "title": "👋 Merhaba!",
-      "text": "Bu küçük dünya,\nbenim yazılım yolculuğumu anlatıyor.\n\nEtrafı keşfet\nve hikâyemi adım adım öğren."
+      "text": "Bu küçük dünya,\nbenim yazılım yolculuğumun tatlı bir özeti.\n\nEtrafı keşfet,\nher durakta hikayemden küçük bir parça bulacaksın."
     },
     "en": {
       "title": "👋 Welcome!",
@@ -12,7 +12,7 @@
   "player.spawn": {
     "tr": {
       "title": "✨ Başlangıç",
-      "text": "Hoş geldin!\nKeşfe buradan başlıyoruz.\n\nYol boyunca\nbenim hikâyemle karşılaşacaksın."
+      "text": "Hoş geldin!\nBu yolculuk tam burada başlıyor.\n\nBiraz ilerledikçe\nhem hikayemi hem de yaptıklarımı keşfedeceksin."
     },
     "en": {
       "title": "✨ Start",
@@ -112,7 +112,7 @@
   "path.1": {
     "tr": {
       "title": "🪨 Yol 1",
-      "text": "Bu yol\nbeni deneyimlerime götürüyor."
+      "text": "Düz devam edersen\nbeni anlatan deneyim evlerine ulaşırsın.\n\nYukarı çıkarsan da\nokulum ve skill tarlam seni bekliyor."
     },
     "en": {
       "title": "🪨 Path 1",
@@ -122,7 +122,7 @@
   "path.2": {
     "tr": {
       "title": "🪨 Yol 2",
-      "text": "Bu yol\nokul ve hikâyeme açılıyor."
+      "text": "Sağa doğru düz gidersen\nskill tarlama varırsın.\n\nSola doğru düz gidersen de\nokuluma ulaşırsın."
     },
     "en": {
       "title": "🪨 Path 2",

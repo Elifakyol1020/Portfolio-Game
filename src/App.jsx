@@ -20,6 +20,12 @@ function normalizeMapKey(raw) {
   return String(raw).replace(".tmj", "");
 }
 
+function wait(ms) {
+  return new Promise((resolve) => {
+    window.setTimeout(resolve, ms);
+  });
+}
+
 function App() {
   const gameRootRef = useRef(null);
   const [status, setStatus] = useState("loading");
@@ -36,6 +42,7 @@ function App() {
       try {
         setStatus("loading");
         setError(null);
+        const loadingStartedAt = performance.now();
 
         const mapKey = normalizeMapKey(currentMap);
         const mapUrl = MAP_BY_KEY[mapKey] ?? MAP_BY_KEY.portfolio;
@@ -43,6 +50,8 @@ function App() {
         stop = await startGame({
           mapUrl,
           spawnName: currentSpawn ?? undefined,
+          initialMessageKey:
+            mapKey === "portfolio" && currentSpawn == null ? "intro.start" : null,
           root: gameRootRef.current,
           scale: 1,
           zoom: 2.4,
@@ -58,6 +67,11 @@ function App() {
             setStatus("error");
           },
         });
+        const elapsed = performance.now() - loadingStartedAt;
+        const remaining = Math.max(0, 650 - elapsed);
+        if (remaining > 0) {
+          await wait(remaining);
+        }
         if (!cancelled) setStatus("running");
       } catch (e) {
         console.error(e);
@@ -78,10 +92,10 @@ function App() {
   return (
     <div className="game-root" ref={gameRootRef}>
       {status === "loading" && (
-        <div className="screen-overlay">
-          <div className="screen-overlay__card">
-            <div className="screen-overlay__title">Yukleniyor...</div>
-            <div className="screen-overlay__text">Yeni harita hazirlaniyor.</div>
+        <div className="loading-hud">
+          <div className="loading-hud__label">Yukleniyor...</div>
+          <div className="loading-hud__bar">
+            <div className="loading-hud__bar-fill" />
           </div>
         </div>
       )}

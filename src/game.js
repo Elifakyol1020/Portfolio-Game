@@ -26,6 +26,7 @@ export async function startGame(options = {}) {
   const {
     mapUrl = defaultMapUrl,
     spawnName = null,
+    initialMessageKey = null,
     root = document.body,
     debug = false,
     scale = 1,
@@ -460,19 +461,38 @@ export async function startGame(options = {}) {
 
   setDialogVisible(false);
 
+  function showDialogMessage(message, hint = "Walk away to close") {
+    const { title, body } = splitMessage(message ?? "");
+    dialogTitle.text = title ?? "";
+    dialogText.text = body ?? "";
+    dialogHint.text = hint;
+    setDialogVisible(Boolean(title || body));
+  }
+
   let activeInteraction = null;
   let lastPortalKey = null;
   let lastPortalAt = 0;
   const INTERACTION_TRIGGER_DISTANCE = 2;
+  const initialPlayerPos = vec2(spawn.x, spawn.y);
+  const initialMessage =
+    resolveText(textsData, initialMessageKey, language) ?? null;
+  let stickyMessage = initialMessage;
+
+  if (stickyMessage) {
+    showDialogMessage(stickyMessage);
+  }
 
   player.onUpdate(() => {
     const p = player.pos;
+    if (stickyMessage && p.dist(initialPlayerPos) > 10) {
+      stickyMessage = null;
+    }
     let best = null;
     let bestDist = INTERACTION_TRIGGER_DISTANCE;
 
     for (const it of interactions) {
       const d = distanceToBounds(p, it.bounds);
-      if (d <= bestDist) {
+      if (d < bestDist) {
         best = it;
         bestDist = d;
       }
@@ -482,7 +502,11 @@ export async function startGame(options = {}) {
 
     if (!activeInteraction) {
       lastPortalKey = null;
-      setDialogVisible(false);
+      if (stickyMessage) {
+        showDialogMessage(stickyMessage);
+      } else {
+        setDialogVisible(false);
+      }
       return;
     }
 
@@ -503,13 +527,13 @@ export async function startGame(options = {}) {
       return;
     }
 
-    setDialogVisible(true);
-    const { title, body } = splitMessage(activeInteraction.message ?? "");
-    dialogTitle.text = title ?? "";
-    dialogText.text = body ?? "";
-    dialogHint.text = activeInteraction.url
+    stickyMessage = null;
+    showDialogMessage(
+      activeInteraction.message ?? "",
+      activeInteraction.url
       ? "ENTER: link"
-      : "Walk away to close";
+      : "Walk away to close",
+    );
   });
 
   onKeyPress("enter", () => {

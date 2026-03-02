@@ -42,35 +42,52 @@ html, body, #root {
   pointer-events: none;
 }
 
-.screen-overlay {
+.loading-hud {
   position: absolute;
-  inset: 0;
   z-index: 20;
+  bottom: 18px;
+  left: 50%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background: rgba(10, 12, 18, 0.72);
+  gap: 8px;
+  padding: 10px 14px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: rgba(12, 16, 24, 0.72);
   backdrop-filter: blur(4px);
   pointer-events: none;
 }
 
-.screen-overlay__card {
-  min-width: 220px;
-  padding: 18px 22px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 14px;
-  background: rgba(18, 22, 31, 0.88);
-  color: rgba(255, 255, 255, 0.95);
-  text-align: center;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.28);
+.loading-hud__label {
+  font: 600 13px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: rgba(255, 255, 255, 0.92);
 }
 
-.screen-overlay__title {
-  font: 600 18px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+.loading-hud__bar {
+  position: relative;
+  width: 220px;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
 }
 
-.screen-overlay__text {
-  margin-top: 6px;
-  font: 13px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color: rgba(220, 230, 245, 0.78);
+.loading-hud__bar-fill {
+  width: 45%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #7dd3fc 0%, #fde68a 100%);
+  animation: loading-bar 1.15s ease-in-out infinite;
+}
+
+@keyframes loading-bar {
+  0% {
+    transform: translateX(-120%);
+  }
+
+  100% {
+    transform: translateX(320%);
+  }
 }
