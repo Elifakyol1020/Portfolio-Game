@@ -77,10 +77,19 @@ function App() {
 
   return (
     <div className="game-root" ref={gameRootRef}>
-      <div className="hud">
-        {status === "loading" && <div>Loading…</div>}
-        {status === "error" && <div>Game error: {error}</div>}
-      </div>
+      {status === "loading" && (
+        <div className="screen-overlay">
+          <div className="screen-overlay__card">
+            <div className="screen-overlay__title">Yukleniyor...</div>
+            <div className="screen-overlay__text">Yeni harita hazirlaniyor.</div>
+          </div>
+        </div>
+      )}
+      {status === "error" && (
+        <div className="hud">
+          <div>Game error: {error}</div>
+        </div>
+      )}
     </div>
   );
 }

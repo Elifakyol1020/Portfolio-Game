@@ -41,3 +41,36 @@ html, body, #root {
   border-radius: 8px;
   pointer-events: none;
 }
+
+.screen-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 12, 18, 0.72);
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+.screen-overlay__card {
+  min-width: 220px;
+  padding: 18px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  background: rgba(18, 22, 31, 0.88);
+  color: rgba(255, 255, 255, 0.95);
+  text-align: center;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.28);
+}
+
+.screen-overlay__title {
+  font: 600 18px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.screen-overlay__text {
+  margin-top: 6px;
+  font: 13px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: rgba(220, 230, 245, 0.78);
+}
