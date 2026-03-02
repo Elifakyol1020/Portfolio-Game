@@ -19,7 +19,9 @@ const TILE_TSX_RAW = import.meta.glob("./assets/tilesets/**/*.tsx", {
 let _ctx = null;
 let _stop = null;
 export async function startGame(options = {}) {
-  if (_stop) return _stop;
+  if (_stop) {
+    _stop();
+  }
 
   const {
     mapUrl = defaultMapUrl,
@@ -56,7 +58,8 @@ export async function startGame(options = {}) {
     k.onError((err) => {
       try {
         onError(err);
-      } catch {
+      } catch (callbackError) {
+        console.error("onError callback failed", callbackError);
       }
     });
   }
