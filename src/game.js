@@ -65,17 +65,26 @@ export async function startGame(options = {}) {
   }
 
   _ctx = k;
-  _stop = () => {
+  const stopCurrentGame = () => {
     try {
-      _ctx?.quit();
+      k.quit();
     } finally {
-      _ctx = null;
-      _stop = null;
+      if (_ctx === k) {
+        _ctx = null;
+      }
+      if (_stop === stopCurrentGame) {
+        _stop = null;
+      }
     }
   };
+  _stop = stopCurrentGame;
   k.onCleanup(() => {
-    _ctx = null;
-    _stop = null;
+    if (_ctx === k) {
+      _ctx = null;
+    }
+    if (_stop === stopCurrentGame) {
+      _stop = null;
+    }
   });
 
   const {
@@ -543,7 +552,7 @@ export async function startGame(options = {}) {
     }
   });
 
-  return _stop;
+  return stopCurrentGame;
 }
 
 
