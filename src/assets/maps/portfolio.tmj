@@ -1,4 +1,12 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"portfolio.tmj"
+        }
+    },
  "height":60,
  "infinite":false,
  "layers":[

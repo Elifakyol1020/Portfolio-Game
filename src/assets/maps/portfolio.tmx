@@ -8,7 +8,7 @@
  <tileset firstgid="1729" source="../../../../../../tilesets/props water.tsx"/>
  <tileset firstgid="1809" source="../../../../../../tilesets/Tileset Grass Cliff Tileset Spring.tsx"/>
  <tileset firstgid="2289" source="../../../../../../tilesets/ALL props seasons.tsx"/>
- <tileset firstgid="2553" source="../../../../../../tilesets/School.tsx"/>
+ <tileset firstgid="2553" source="../tilesets/School_outdoor.tsx"/>
  <tileset firstgid="2833" source="../../../../../../tilesets/Base houses.tsx"/>
  <tileset firstgid="3911" source="../../../../../../tilesets/Road.tsx"/>
  <tileset firstgid="4019" source="../../../../../../tilesets/Fence Wood.tsx"/>

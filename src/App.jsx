@@ -20,16 +20,8 @@ function normalizeMapKey(raw) {
   return String(raw).replace(".tmj", "");
 }
 
-function wait(ms) {
-  return new Promise((resolve) => {
-    window.setTimeout(resolve, ms);
-  });
-}
-
 function App() {
   const gameRootRef = useRef(null);
-  const [status, setStatus] = useState("loading");
-  const [error, setError] = useState(null);
   const [currentMap, setCurrentMap] = useState("portfolio");
   const [currentSpawn, setCurrentSpawn] = useState(null);
 
@@ -40,10 +32,6 @@ function App() {
     (async () => {
       if (!gameRootRef.current) return;
       try {
-        setStatus("loading");
-        setError(null);
-        const loadingStartedAt = performance.now();
-
         const mapKey = normalizeMapKey(currentMap);
         const mapUrl = MAP_BY_KEY[mapKey] ?? MAP_BY_KEY.portfolio;
 
@@ -63,22 +51,11 @@ function App() {
             setCurrentSpawn(targetSpawn ?? null);
           },
           onError: (err) => {
-            setError(err?.message ?? String(err));
-            setStatus("error");
+            console.error(err);
           },
         });
-        const elapsed = performance.now() - loadingStartedAt;
-        const remaining = Math.max(0, 650 - elapsed);
-        if (remaining > 0) {
-          await wait(remaining);
-        }
-        if (!cancelled) setStatus("running");
       } catch (e) {
         console.error(e);
-        if (!cancelled) {
-          setError(e instanceof Error ? e.message : String(e));
-          setStatus("error");
-        }
       }
       if (cancelled) stop?.();
     })();
@@ -90,21 +67,7 @@ function App() {
   }, [currentMap, currentSpawn]);
 
   return (
-    <div className="game-root" ref={gameRootRef}>
-      {status === "loading" && (
-        <div className="loading-hud">
-          <div className="loading-hud__label">Yukleniyor...</div>
-          <div className="loading-hud__bar">
-            <div className="loading-hud__bar-fill" />
-          </div>
-        </div>
-      )}
-      {status === "error" && (
-        <div className="hud">
-          <div>Game error: {error}</div>
-        </div>
-      )}
-    </div>
+    <div className="game-root" ref={gameRootRef} />
   );
 }
 
