@@ -320,6 +320,15 @@ export async function startGame(options = {}) {
   }
 
   k.onMouseDown(() => {
+    const hoveredLink = getHoveredDialogLink(k.mousePos());
+    if (hoveredLink) {
+      if (hoveredLink.action === "copy") {
+        copyTextToClipboard(hoveredLink.value);
+      } else {
+        window.location.href = hoveredLink.href;
+      }
+      return;
+    }
     mouseDown = true;
     pressWorld = getMouseWorld();
     mouseTarget = pressWorld;
@@ -331,6 +340,10 @@ export async function startGame(options = {}) {
   });
 
   k.onMouseMove(() => {
+    const hoveredLink = getHoveredDialogLink(k.mousePos());
+    if (root && root.style) {
+      root.style.cursor = hoveredLink ? "pointer" : "crosshair";
+    }
     if (mouseDown) {
       const world = getMouseWorld();
       if (pressWorld && world.dist(pressWorld) >= DRAG_START_PX) {
@@ -404,10 +417,10 @@ export async function startGame(options = {}) {
   });
 
 
-  const dialogHeight = 96;
-  const dialogWidth = k.width() - 24;
-  const dialogX = 12;
-  const dialogY = k.height() - dialogHeight - 12;
+  const dialogHeight = 120;
+  const dialogWidth = k.width() - 32;
+  const dialogX = 16;
+  const dialogY = k.height() - dialogHeight - 16;
 
   const dialogBg = add([
     rect(dialogWidth, dialogHeight),
@@ -427,46 +440,74 @@ export async function startGame(options = {}) {
     z(1001),
   ]);
 
-  const dialogTitle = add([
-    text("", { size: 14, width: dialogWidth - 24 }),
-    pos(dialogX + 12, dialogY + 12),
-    color(255, 255, 255),
-    fixed(),
-    z(1002),
-  ]);
-
   const dialogText = add([
-    text("", { size: 12, width: dialogWidth - 24 }),
-    pos(dialogX + 12, dialogY + 32),
+    text("", { size: 12, width: dialogWidth - 36 }),
+    pos(dialogX + 18, dialogY + 20),
     color(220, 230, 245),
     fixed(),
     z(1002),
   ]);
 
-  const dialogHint = add([
-    text("", { size: 11 }),
-    pos(dialogX + 12, dialogY + dialogHeight - 18),
-    color(160, 180, 200),
-    fixed(),
-    z(1002),
-  ]);
+  const dialogLinks = Array.from({ length: 4 }, () =>
+    add([
+      text("", { size: 13, width: dialogWidth - 36 }),
+      pos(dialogX + 18, dialogY + 44),
+      color(120, 200, 255),
+      fixed(),
+      z(1002),
+    ]),
+  );
+  let activeDialogLinks = [];
 
   function setDialogVisible(visible) {
     dialogBg.hidden = !visible;
     dialogAccent.hidden = !visible;
-    dialogTitle.hidden = !visible;
     dialogText.hidden = !visible;
-    dialogHint.hidden = !visible;
+    for (const linkNode of dialogLinks) {
+      linkNode.hidden = !visible;
+    }
   }
 
   setDialogVisible(false);
 
-  function showDialogMessage(message, hint = "Walk away to close") {
+  function showDialogMessage(message) {
     const { title, body } = splitMessage(message ?? "");
-    dialogTitle.text = title ?? "";
-    dialogText.text = body ?? "";
-    dialogHint.text = hint;
-    setDialogVisible(Boolean(title || body));
+    const content = body || title;
+    const { textBody, links } = splitDialogLinks(content);
+    dialogText.text = textBody;
+    activeDialogLinks = links;
+
+    let linkY = dialogY + 74;
+    for (let i = 0; i < dialogLinks.length; i++) {
+      const linkNode = dialogLinks[i];
+      const link = links[i];
+      if (!link) {
+        linkNode.text = "";
+        linkNode.hidden = true;
+        continue;
+      }
+      linkNode.text = link.label;
+      linkNode.pos = vec2(dialogX + 18, linkY);
+      linkNode.hidden = false;
+      linkY += 15;
+    }
+
+    setDialogVisible(Boolean(content));
+  }
+
+  function getHoveredDialogLink(screenPos) {
+    for (let i = 0; i < activeDialogLinks.length; i++) {
+      const link = activeDialogLinks[i];
+      const linkNode = dialogLinks[i];
+      const width = estimateDialogLinkWidth(link.label);
+      const height = 15;
+      const withinX = screenPos.x >= linkNode.pos.x && screenPos.x <= linkNode.pos.x + width;
+      const withinY = screenPos.y >= linkNode.pos.y && screenPos.y <= linkNode.pos.y + height;
+      if (withinX && withinY) {
+        return link;
+      }
+    }
+    return null;
   }
 
   let activeInteraction = null;
@@ -528,12 +569,7 @@ export async function startGame(options = {}) {
     }
 
     stickyMessage = null;
-    showDialogMessage(
-      activeInteraction.message ?? "",
-      activeInteraction.url
-      ? "ENTER: link"
-      : "Walk away to close",
-    );
+    showDialogMessage(activeInteraction.message ?? "");
   });
 
   onKeyPress("enter", () => {
@@ -774,6 +810,78 @@ function splitMessage(message) {
   const title = lines.shift()?.trim() ?? "";
   const body = lines.join("\n").trim();
   return { title, body };
+}
+
+function splitDialogLinks(body) {
+  const lines = (body ?? "").split("\n");
+  const textLines = [];
+  const links = [];
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (!line) {
+      if (textLines[textLines.length - 1] !== "") {
+        textLines.push("");
+      }
+      continue;
+    }
+
+    if (line.startsWith("GitHub: ")) {
+      const value = line.slice("GitHub: ".length).trim();
+      links.push({ label: "GitHub", href: normalizeExternalHref(value) });
+      continue;
+    }
+
+    if (line.startsWith("LinkedIn: ")) {
+      const value = line.slice("LinkedIn: ".length).trim();
+      links.push({ label: "LinkedIn", href: normalizeExternalHref(value) });
+      continue;
+    }
+
+    if (line.startsWith("Medium: ")) {
+      const value = line.slice("Medium: ".length).trim();
+      links.push({ label: "Medium", href: normalizeExternalHref(value) });
+      continue;
+    }
+
+    textLines.push(rawLine);
+  }
+
+  return {
+    textBody: textLines.join("\n").trim(),
+    links,
+  };
+}
+
+function normalizeExternalHref(value) {
+  if (/^[a-z]+:\/\//i.test(value)) return value;
+  return `https://${value}`;
+}
+
+function copyTextToClipboard(value) {
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(value).catch(() => {
+      fallbackCopyText(value);
+    });
+    return;
+  }
+  fallbackCopyText(value);
+}
+
+function fallbackCopyText(value) {
+  const input = document.createElement("textarea");
+  input.value = value;
+  input.setAttribute("readonly", "");
+  input.style.position = "absolute";
+  input.style.left = "-9999px";
+  document.body.appendChild(input);
+  input.select();
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}
+
+function estimateDialogLinkWidth(value) {
+  return value.length * 7.2;
 }
 
 function resolveText(textsData, textKey, language) {

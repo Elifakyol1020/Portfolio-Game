@@ -1,4 +1,12 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"school_inside.tmj"
+        }
+    },
  "height":25,
  "infinite":false,
  "layers":[
