@@ -151,7 +151,7 @@
   },
   "skill.mobile": {
     "tr": {
-      "title": "Mobile",
+      "title": "Mobil",
       "text": "Kullandığım teknolojiler:\n• Kotlin\n• Dart\n• Flutter"
     },
     "en": {
@@ -171,7 +171,7 @@
   },
   "skill.database_data": {
     "tr": {
-      "title": "Database & Data",
+      "title": "Veritabanı ve Veri",
       "text": "Kullandığım teknolojiler:\n• PostgreSQL\n• MySQL\n• MongoDB\n• Redis\n• Elasticsearch\n• JPA\n• Pandas\n• NumPy"
     },
     "en": {
@@ -191,7 +191,7 @@
   },
   "skill.testing": {
     "tr": {
-      "title": "Testing",
+      "title": "Test",
       "text": "Kullandığım araçlar:\n• JUnit\n• Mockito\n• Testcontainers\n• Selenium\n• Postman\n• Swagger\n• SonarQube\n• JaCoCo"
     },
     "en": {

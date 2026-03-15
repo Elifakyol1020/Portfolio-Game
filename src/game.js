@@ -470,9 +470,12 @@ export async function startGame(options = {}) {
 
   setDialogVisible(false);
 
-  function showDialogMessage(message) {
+  function showDialogMessage(message, options = {}) {
     const { title, body } = splitMessage(message ?? "");
-    const content = body || title;
+    const content =
+      options.inlineTitle && title && body
+        ? `${title}\n${body}`
+        : (body || title);
     const { textBody, links } = splitDialogLinks(content);
     dialogText.text = textBody;
     activeDialogLinks = links;
@@ -569,7 +572,9 @@ export async function startGame(options = {}) {
     }
 
     stickyMessage = null;
-    showDialogMessage(activeInteraction.message ?? "");
+    showDialogMessage(activeInteraction.message ?? "", {
+      inlineTitle: activeInteraction.textKey?.startsWith("skill.") ?? false,
+    });
   });
 
   onKeyPress("enter", () => {
@@ -793,7 +798,17 @@ function tiledInteractionToRuntime(obj, { interactionsData, textsData, language 
   const bounds = getTiledObjectBounds(obj);
   const { center } = bounds;
 
-  return { id: obj.id, message, url, center, bounds, type, targetMap, targetSpawn };
+  return {
+    id: obj.id,
+    message,
+    url,
+    center,
+    bounds,
+    type,
+    targetMap,
+    targetSpawn,
+    textKey,
+  };
 }
 
 function distanceToBounds(p, bounds) {
