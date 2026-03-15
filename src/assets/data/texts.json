@@ -1,391 +1,391 @@
 {
   "intro.start": {
     "tr": {
-      "title": "👋 Merhaba!",
-      "text": "Bu küçük dünya,\nbenim yazılım yolculuğumun tatlı bir özeti.\n\nEtrafı keşfet,\nher durakta hikayemden küçük bir parça bulacaksın."
+      "title": "Merhaba",
+      "text": "Bu harita benim yazılım yolculuğumu anlatıyor.\nHaritayı keşfettikçe farklı alanlarda benimle ilgili detaylar göreceksin.\nMesaj olan yerlerde bıraktığım mektupları okuyarak hikayemi daha yakından tanıyabilirsin."
     },
     "en": {
-      "title": "👋 Welcome!",
-      "text": "This small world represents\nmy journey in software development.\n\nExplore the map\nand discover my story step by step."
+      "title": "Welcome",
+      "text": "This map tells the story of my software journey.\nAs you explore it, you will see different details about me in different areas.\nYou can get to know my story better by reading the letters I left in the message spots."
     }
   },
   "player.spawn": {
     "tr": {
-      "title": "✨ Başlangıç",
-      "text": "Hoş geldin!\nBu yolculuk tam burada başlıyor.\n\nBiraz ilerledikçe\nhem hikayemi hem de yaptıklarımı keşfedeceksin."
+      "title": "Başlangıç",
+      "text": "Hoş geldin! Bu yolculuk tam burada başlıyor.\nBiraz ilerledikçe hem hikayemi hem de yaptıklarımı keşfedeceksin."
     },
     "en": {
-      "title": "✨ Start",
-      "text": "Welcome!\nWe start the journey here.\n\nAlong the way,\nyou will discover my story."
+      "title": "Start",
+      "text": "Welcome! This journey starts right here.\nAs you move forward, you will discover both my story and the things I have built."
     }
   },
   "about.me": {
     "tr": {
-      "title": "🧍 Ben Kimim?",
-      "text": "Ben Elif Akyol.\n21 yaşındayım.\n\nİnönü Üniversitesi\nYazılım Mühendisliği öğrencisiyim.\n\nYazılımla ilgileniyorum,\nöğrenmeye ve üretmeye devam ediyorum.\nBu harita da\nbu yolculuğun bir parçası."
+      "title": "Ben Kimim",
+      "text": "Ben Elif Akyol, 21 yaşındayım.\nİnönü Üniversitesi Yazılım Mühendisliği öğrencisiyim.\nYazılımla ilgileniyor, öğrenmeye ve üretmeye devam ediyorum.\nBu harita da bu yolculuğun bir parçası."
     },
     "en": {
-      "title": "🧍 About Me",
-      "text": "My name is Elif Akyol.\nI am 21 years old.\n\nI am a Software Engineering student\nat İnönü University.\n\nI am interested in software development\nand continue learning and building.\nThis map is part of that journey."
+      "title": "About Me",
+      "text": "My name is Elif Akyol and I am 21 years old.\nI am a Software Engineering student at İnönü University.\nI am interested in software and I keep learning and building.\nThis map is also a part of that journey."
     }
   },
   "about.me.house": {
     "tr": {
-      "title": "🏡 Evim",
+      "title": "Evim",
       "text": "Burası evim."
     },
     "en": {
-      "title": "🏡 My Home",
+      "title": "My Home",
       "text": "This is my home."
     }
   },
   "school.sign": {
     "tr": {
-      "title": "🎓 İnönü Üniversitesi",
-      "text": "İnönü Üniversitesi\nYazılım Mühendisliği öğrencisiyim.\n\nBu yıl mezun oluyorum.\n\nBu süreçte öğrendiklerimi\nprojelerle pekiştiriyor,\nkendimi geliştirmeye\ndevam ediyorum."
+      "title": "İnönü Üniversitesi",
+      "text": "İnönü Üniversitesi Yazılım Mühendisliği öğrencisiyim.\nBu yıl mezun oluyorum.\nÖğrendiklerimi projelerle pekiştirip kendimi geliştirmeye devam ediyorum."
     },
     "en": {
-      "title": "🎓 İnönü University",
-      "text": "I am a Software Engineering student\nat İnönü University.\n\nI am graduating this year.\n\nI continue improving myself\nby turning what I learn\ninto real projects."
+      "title": "İnönü University",
+      "text": "I am a Software Engineering student at İnönü University.\nI am graduating this year.\nI keep improving myself by turning what I learn into real projects."
     }
   },
   "about.me.school": {
     "tr": {
-      "title": "🏫 Okul Hayatım",
-      "text": "Okul sürecimde\nteori ve pratiği\nbirlikte öğrenmeye çalışıyorum.\n\nProjeler ve dersler\nbeni her gün biraz daha geliştiriyor."
+      "title": "Okul Hayatım",
+      "text": "Okul sürecimde teori ve pratiği birlikte öğrenmeye çalışıyorum.\nProjeler ve dersler beni her gün biraz daha geliştiriyor."
     },
     "en": {
-      "title": "🏫 School Life",
-      "text": "During school,\nI try to learn theory and practice together.\n\nClasses and projects\nhelp me grow every day."
+      "title": "School Life",
+      "text": "During school, I try to learn theory and practice together.\nClasses and projects help me grow a little more every day."
     }
   },
   "contact": {
     "tr": {
-      "title": "📬 İletişim",
-      "text": "Benimle iletişime geçmek istersen\nburadan ulaşabilirsin.\n\n• E-posta\n• GitHub\n• LinkedIn\n\nYeni fikirler ve\ngüzel sohbetlere her zaman açığım."
+      "title": "İletişim",
+      "text": "Benimle iletişime geçmek istersen buradan ulaşabilirsin.\n\nEmail: elif@iotiq.net\nGitHub: https://github.com/Elifakyol1020\nLinkedIn: www.linkedin.com/in/eliffakylll\nMedium: https://medium.com/@eakyol1020"
     },
     "en": {
-      "title": "📬 Contact",
-      "text": "If you would like to get in touch,\nyou can reach me here.\n\n• Email\n• GitHub\n• LinkedIn\n\nI am always open to new ideas\nand meaningful conversations."
+      "title": "Contact",
+      "text": "If you would like to get in touch, you can reach me here.\n\nEmail: elif@iotiq.net\nGitHub: https://github.com/Elifakyol1020\nLinkedIn: www.linkedin.com/in/eliffakylll\nMedium: https://medium.com/@eakyol1020"
     }
   },
   "picnic.area": {
     "tr": {
-      "title": "🧺 Piknik Alanı",
-      "text": "Doğanın içinde\nkısa bir mola.\n\nKüçük anlar\nbüyük ilhamlar getirir."
+      "title": "Piknik Alanı",
+      "text": "Piknik yapmayı çok severim.\nBurası da benim en sevdiğim köşelerden biri."
     },
     "en": {
-      "title": "🧺 Picnic Area",
-      "text": "A short break\nin the middle of nature.\n\nSmall moments\nbring big inspiration."
+      "title": "Picnic Area",
+      "text": "I really love having picnics.\nThis is one of my favorite little spots on the map."
     }
   },
   "cherry.trees": {
     "tr": {
-      "title": "🍒 Kiraz Ağaçları",
-      "text": "Renkli ve sakin bir köşe.\n\nBurası\nbaharın en güzel hâli."
+      "title": "Kiraz Ağaçları",
+      "text": "Kiraz ağaçlarını da çok severim.\nBurası bana sakin ve keyifli bir his veriyor."
     },
     "en": {
-      "title": "🍒 Cherry Trees",
-      "text": "A colorful, peaceful corner.\n\nThis is spring\nat its best."
+      "title": "Cherry Trees",
+      "text": "I really love cherry trees too.\nThis place gives me a calm and peaceful feeling."
     }
   },
   "strawberry.area": {
     "tr": {
-      "title": "🍓 Çilek Tarlası",
-      "text": "Emek, sabır ve\nküçük mutluluklar.\n\nHer tohum\nyeni bir umut."
+      "title": "Çilek Tarlası",
+      "text": "Çilekleri de çok severim.\nBurası bana emek ve küçük mutlulukları hatırlatıyor."
     },
     "en": {
-      "title": "🍓 Strawberry Field",
-      "text": "Effort, patience,\nand small joys.\n\nEvery seed\nis a new hope."
+      "title": "Strawberry Field",
+      "text": "I really love strawberries too.\nThis place reminds me of effort and small little joys."
     }
   },
   "apricot.trees": {
     "tr": {
-      "title": "🍑 Kayısı Ağaçları",
-      "text": "Sıcak güneş ve\ntatlı bir esinti.\n\nBurası\nMalatya havası gibi."
+      "title": "Kayısı Ağaçları",
+      "text": "Malatya'nın kayısısı meşhur :)\nBurası da bana hep onu hatırlatıyor."
     },
     "en": {
-      "title": "🍑 Apricot Trees",
-      "text": "Warm sun\nand a gentle breeze.\n\nIt feels like\nMalatya."
+      "title": "Apricot Trees",
+      "text": "Malatya is famous for its apricots :)\nThis place always reminds me of that."
     }
   },
   "path.1": {
     "tr": {
-      "title": "🪨 Yol 1",
-      "text": "Düz devam edersen\nbeni anlatan deneyim evlerine ulaşırsın.\n\nYukarı çıkarsan da\nokulum ve skill tarlam seni bekliyor."
+      "title": "Yol 1",
+      "text": "Düz devam edersen beni anlatan deneyim evlerine ulaşırsın.\nYukarı çıkarsan da okulum ve skill tarlam seni bekliyor."
     },
     "en": {
-      "title": "🪨 Path 1",
-      "text": "This path\nleads to my experiences."
+      "title": "Path 1",
+      "text": "If you keep going straight, you will reach the houses that tell my experiences.\nIf you go upward, my school and skill field will be waiting for you."
     }
   },
   "path.2": {
     "tr": {
-      "title": "🪨 Yol 2",
-      "text": "Sağa doğru düz gidersen\nskill tarlama varırsın.\n\nSola doğru düz gidersen de\nokuluma ulaşırsın."
+      "title": "Yol 2",
+      "text": "Sağa doğru düz gidersen skill tarlama varırsın.\nSola doğru düz gidersen de okuluma ulaşırsın."
     },
     "en": {
-      "title": "🪨 Path 2",
-      "text": "This path\nopens to my school and story."
+      "title": "Path 2",
+      "text": "If you go straight to the right, you will reach my skill field.\nIf you go straight to the left, you will reach my school."
     }
   },
   "skill.frontend": {
     "tr": {
-      "title": "🎨 Frontend",
+      "title": "Frontend",
       "text": "Kullandığım teknolojiler:\n• HTML\n• CSS\n• JavaScript\n• React.js\n• Angular\n• Tailwind CSS\n• Bootstrap\n• Material UI"
     },
     "en": {
-      "title": "🎨 Frontend",
+      "title": "Frontend",
       "text": "Technologies I use:\n• HTML\n• CSS\n• JavaScript\n• React.js\n• Angular\n• Tailwind CSS\n• Bootstrap\n• Material UI"
     }
   },
   "skill.backend": {
     "tr": {
-      "title": "🧩 Backend",
+      "title": "Backend",
       "text": "Kullandığım teknolojiler:\n• Java\n• Python\n• Spring Boot\n• Django\n• Flask"
     },
     "en": {
-      "title": "🧩 Backend",
+      "title": "Backend",
       "text": "Technologies I use:\n• Java\n• Python\n• Spring Boot\n• Django\n• Flask"
     }
   },
   "skill.mobile": {
     "tr": {
-      "title": "📱 Mobile",
+      "title": "Mobile",
       "text": "Kullandığım teknolojiler:\n• Kotlin\n• Dart\n• Flutter"
     },
     "en": {
-      "title": "📱 Mobile",
+      "title": "Mobile",
       "text": "Technologies I use:\n• Kotlin\n• Dart\n• Flutter"
     }
   },
   "skill.devops": {
     "tr": {
-      "title": "🛠️ DevOps",
+      "title": "DevOps",
       "text": "Kullandığım teknolojiler:\n• Docker\n• Jenkins\n• Prometheus\n• Grafana\n• ELK"
     },
     "en": {
-      "title": "🛠️ DevOps",
+      "title": "DevOps",
       "text": "Technologies I use:\n• Docker\n• Jenkins\n• Prometheus\n• Grafana\n• ELK"
     }
   },
   "skill.database_data": {
     "tr": {
-      "title": "🗄️ Database & Data",
+      "title": "Database & Data",
       "text": "Kullandığım teknolojiler:\n• PostgreSQL\n• MySQL\n• MongoDB\n• Redis\n• Elasticsearch\n• JPA\n• Pandas\n• NumPy"
     },
     "en": {
-      "title": "🗄️ Database & Data",
+      "title": "Database & Data",
       "text": "Technologies I use:\n• PostgreSQL\n• MySQL\n• MongoDB\n• Redis\n• Elasticsearch\n• JPA\n• Pandas\n• NumPy"
     }
   },
   "skill.git": {
     "tr": {
-      "title": "🔧 Git",
+      "title": "Git",
       "text": "Kullandığım araçlar:\n• Git\n• GitHub\n• GitLab"
     },
     "en": {
-      "title": "🔧 Git",
+      "title": "Git",
       "text": "Tools I use:\n• Git\n• GitHub\n• GitLab"
     }
   },
   "skill.testing": {
     "tr": {
-      "title": "🧪 Testing",
+      "title": "Testing",
       "text": "Kullandığım araçlar:\n• JUnit\n• Mockito\n• Testcontainers\n• Selenium\n• Postman\n• Swagger\n• SonarQube\n• JaCoCo"
     },
     "en": {
-      "title": "🧪 Testing",
+      "title": "Testing",
       "text": "Tools I use:\n• JUnit\n• Mockito\n• Testcontainers\n• Selenium\n• Postman\n• Swagger\n• SonarQube\n• JaCoCo"
     }
   },
   "house.enter": {
     "tr": {
-      "title": "🚪 Ev Girişi",
+      "title": "Ev Girişi",
       "text": "Evin içine giriyorsun."
     },
     "en": {
-      "title": "🚪 House Entry",
+      "title": "House Entry",
       "text": "You are entering the house."
     }
   },
   "house.exit": {
     "tr": {
-      "title": "🚪 Ev Çıkışı",
+      "title": "Ev Çıkışı",
       "text": "Dışarı çıkmak için kapıya ilerle."
     },
     "en": {
-      "title": "🚪 House Exit",
+      "title": "House Exit",
       "text": "Walk to the door to go outside."
     }
   },
   "house.bed": {
     "tr": {
-      "title": "🛏️ Yatak",
+      "title": "Yatak",
       "text": "Burası dinlenme alanım."
     },
     "en": {
-      "title": "🛏️ Bed",
+      "title": "Bed",
       "text": "This is my resting area."
     }
   },
   "house.computer": {
     "tr": {
-      "title": "💻 Bilgisayar",
-      "text": "Projelerimi burada geliştiriyorum."
+      "title": "Bilgisayar",
+      "text": "Günümün çoğu burada geçiyor.\nBirçok şeyi burada öğreniyor, burada geliştiriyorum."
     },
     "en": {
-      "title": "💻 Computer",
-      "text": "I build my projects here."
+      "title": "Computer",
+      "text": "I spend most of my day here.\nI learn many things here and build here."
     }
   },
   "house.book": {
     "tr": {
-      "title": "📚 Kitaplık",
+      "title": "Kitaplık",
       "text": "Öğrenme sürecimdeki kaynaklar burada."
     },
     "en": {
-      "title": "📚 Book Shelf",
+      "title": "Book Shelf",
       "text": "My learning resources are here."
     }
   },
   "house.instrument": {
     "tr": {
-      "title": "🎵 Enstrüman",
+      "title": "Enstrüman",
       "text": "Boş zamanlarımda burada müzikle ilgileniyorum."
     },
     "en": {
-      "title": "🎵 Instrument",
+      "title": "Instrument",
       "text": "I spend free time with music here."
     }
   },
   "house.hobby_room": {
     "tr": {
-      "title": "🎨 Hobi Odası",
+      "title": "Hobi Odası",
       "text": "Hobilerime ayırdığım özel bir alan."
     },
     "en": {
-      "title": "🎨 Hobby Room",
+      "title": "Hobby Room",
       "text": "A dedicated area for my hobbies."
     }
   },
   "house.toy": {
     "tr": {
-      "title": "🧸 Oyuncak Köşesi",
+      "title": "Oyuncak Köşesi",
       "text": "Anılarımı hatırlatan küçük detaylar."
     },
     "en": {
-      "title": "🧸 Toy Corner",
+      "title": "Toy Corner",
       "text": "Small details that remind me of memories."
     }
   },
   "house.draw": {
     "tr": {
-      "title": "🖼️ Çizim Alanı",
+      "title": "Çizim Alanı",
       "text": "Burada çizim ve tasarım denemeleri yapıyorum."
     },
     "en": {
-      "title": "🖼️ Drawing Area",
+      "title": "Drawing Area",
       "text": "I practice drawing and design here."
     }
   },
   "house.tv_area": {
     "tr": {
-      "title": "📺 TV Alanı",
+      "title": "TV Alanı",
       "text": "Kısa molalar için dinlenme köşesi."
     },
     "en": {
-      "title": "📺 TV Area",
+      "title": "TV Area",
       "text": "A relaxation corner for short breaks."
     }
   },
   "house.kitchen_room": {
     "tr": {
-      "title": "🍽️ Mutfak",
-      "text": "Günün enerjisini topladığım yer."
+      "title": "Mutfak",
+      "text": "Mutfakta zaman geçirmeyi çok severim.\nBurası bana ev hissini en çok veren yerlerden biri."
     },
     "en": {
-      "title": "🍽️ Kitchen",
-      "text": "The place where I recharge for the day."
+      "title": "Kitchen",
+      "text": "I really enjoy spending time in the kitchen.\nThis is one of the places that gives me the strongest feeling of home."
     }
   },
   "story.continues": {
     "tr": {
-      "title": "🌱 Hikâyem Devam Ediyor",
-      "text": "Bu yolculuk burada bitmiyor.\n\nÖğrenmeye,\nüretmeye\nve kendimi geliştirmeye\ndevam ediyorum."
+      "title": "Hikâyem Devam Ediyor",
+      "text": "Bu yolculuk burada bitmiyor.\nÖğrenmeye, üretmeye ve kendimi geliştirmeye devam ediyorum."
     },
     "en": {
-      "title": "🌱 My Story Continues",
-      "text": "This journey does not end here.\n\nI continue learning,\nbuilding\nand improving myself."
+      "title": "My Story Continues",
+      "text": "This journey does not end here.\nI keep learning, building and improving myself."
     }
   },
   "experience.sca": {
     "tr": {
-      "title": "🏠 SCA Social",
-      "text": "SCA Social’da\nProje Yönetimi stajımı tamamladım.\n\nBu süreçte;\n• Proje planlama\n• Süreç takibi\n• Takım içi iletişim\n• Sorumluluk yönetimi\n\nkonularında deneyim kazandım.\n\nBir projenin teknik kısmının yanında,\nnasıl yönetildiğini ve\nekiplerle nasıl ilerlediğini öğrendim."
+      "title": "SCA Social",
+      "text": "SCA Social'da Proje Yönetimi stajımı tamamladım.\nBu süreçte proje planlama, süreç takibi, takım içi iletişim ve sorumluluk yönetimi konularında deneyim kazandım.\nBir projenin teknik kısmının yanında nasıl yönetildiğini ve ekiplerle nasıl ilerlediğini öğrendim."
     },
     "en": {
-      "title": "🏠 SCA Social",
-      "text": "I completed a Project Management internship\nat SCA Social.\n\nDuring this experience, I gained knowledge in:\n• Project planning\n• Process tracking\n• Team communication\n• Responsibility management\n\nI learned not only the technical side,\nbut also how projects are managed\nand how teams move forward together."
+      "title": "SCA Social",
+      "text": "I completed my Project Management internship at SCA Social.\nDuring this time, I gained experience in project planning, process tracking, team communication and responsibility management.\nBesides the technical side of a project, I also learned how projects are managed and how teams move forward together."
     }
   },
   "experience.inonu": {
     "tr": {
-      "title": "🏠 İnönü Üniversitesi\nDijital Dönüşüm Ofisi",
-      "text": "Burada Full Stack Developer\nolarak çalıştım.\n\nKullandığım teknolojiler:\n• Spring Boot\n• React.js\n• Bootstrap\n• Docker\n\nÜniversite için\nProgram İndirme Sistemi geliştirdim:\nhttps://indir.inonu.edu.tr/\n\nBackend, frontend ve deploy\nsüreçlerini uçtan uca yönettim."
+      "title": "İnönü Üniversitesi\nDijital Dönüşüm Ofisi",
+      "text": "Burada Full Stack Developer olarak çalıştım.\nKullandığım teknolojiler: Spring Boot, React.js, Bootstrap ve Docker.\nÜniversite için Program İndirme Sistemi geliştirdim: https://indir.inonu.edu.tr/\nBackend, frontend ve deploy süreçlerini uçtan uca yönettim."
     },
     "en": {
-      "title": "🏠 İnönü University\nDigital Transformation Office",
-      "text": "I worked as a Full Stack Developer.\n\nTechnologies I used:\n• Spring Boot\n• React.js\n• Bootstrap\n• Docker\n\nI developed the Program Download System:\nhttps://indir.inonu.edu.tr/\n\nI handled backend, frontend\nand deployment processes end-to-end."
+      "title": "İnönü University\nDigital Transformation Office",
+      "text": "I worked here as a Full Stack Developer.\nThe technologies I used were Spring Boot, React.js, Bootstrap and Docker.\nI developed the Program Download System for the university: https://indir.inonu.edu.tr/\nI managed the backend, frontend and deployment processes end to end."
     }
   },
   "experience.iotiq": {
     "tr": {
-      "title": "🏠 IOTIQ",
-      "text": "IOTIQ’te zorunlu stajımı tamamladım,\nardından Part-Time\nFull Stack Developer olarak devam ediyorum.\n\nTeknik Bilgi Portalı geliştirdim.\n\nKullandığım teknolojiler:\n• Spring Boot\n• React.js\n• PostgreSQL\n• Elasticsearch\n• Apache POI\n• Docker\n• Bootstrap\n\nVeri odaklı projeler ve\nmesajlaşma protokolleri\nüzerinde çalışıyorum."
+      "title": "IOTIQ",
+      "text": "IOTIQ'te zorunlu stajımı tamamladım, ardından Part-Time Full Stack Developer olarak devam ediyorum.\nTeknik Bilgi Portalı geliştirdim.\nKullandığım teknolojiler: Spring Boot, React.js, PostgreSQL, Elasticsearch, Apache POI, Docker ve Bootstrap.\nVeri odaklı projeler ve mesajlaşma protokolleri üzerinde çalışıyorum."
     },
     "en": {
-      "title": "🏠 IOTIQ",
-      "text": "I completed my mandatory internship at IOTIQ\nand currently continue as a\nPart-Time Full Stack Developer.\n\nI developed a Technical Knowledge Portal.\n\nTechnologies I use:\n• Spring Boot\n• React.js\n• PostgreSQL\n• Elasticsearch\n• Apache POI\n• Docker\n• Bootstrap\n\nI am working on data-driven projects\nand messaging-based systems."
+      "title": "IOTIQ",
+      "text": "I completed my mandatory internship at IOTIQ and now continue there as a Part-Time Full Stack Developer.\nI developed a Technical Knowledge Portal.\nThe technologies I use are Spring Boot, React.js, PostgreSQL, Elasticsearch, Apache POI, Docker and Bootstrap.\nI work on data-driven projects and messaging protocols."
     }
   },
   "school.enter": {
     "tr": {
-      "title": "🏫 Okul Girişi",
+      "title": "Okul Girişi",
       "text": "Okulun içine giriyorsun."
     },
     "en": {
-      "title": "🏫 School Entry",
+      "title": "School Entry",
       "text": "You are entering the school."
     }
   },
   "school.exit": {
     "tr": {
-      "title": "🚪 Okul Çıkışı",
+      "title": "Okul Çıkışı",
       "text": "Dışarı çıkmak için kapıya ilerle."
     },
     "en": {
-      "title": "🚪 School Exit",
+      "title": "School Exit",
       "text": "Walk to the door to go outside."
     }
   },
   "school.class_area": {
     "tr": {
-      "title": "🧑‍🏫 Sınıf Alanı",
+      "title": "Sınıf Alanı",
       "text": "Derslere odaklandığım, yeni konular öğrendiğim alan."
     },
     "en": {
-      "title": "🧑‍🏫 Class Area",
+      "title": "Class Area",
       "text": "The area where I focus on classes and learn new topics."
     }
   },
   "school.library_area": {
     "tr": {
-      "title": "📚 Kütüphane Alanı",
+      "title": "Kütüphane Alanı",
       "text": "Araştırma yaptığım ve sakin şekilde çalıştığım bölüm."
     },
     "en": {
-      "title": "📚 Library Area",
+      "title": "Library Area",
       "text": "The section where I research and study quietly."
     }
   }
