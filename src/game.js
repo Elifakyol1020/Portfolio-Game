@@ -320,6 +320,10 @@ export async function startGame(options = {}) {
   }
 
   k.onMouseDown(() => {
+    if (isDialogCloseHovered(k.mousePos())) {
+      closeDialog();
+      return;
+    }
     const hoveredLink = getHoveredDialogLink(k.mousePos());
     if (hoveredLink) {
       if (hoveredLink.action === "copy") {
@@ -341,8 +345,9 @@ export async function startGame(options = {}) {
 
   k.onMouseMove(() => {
     const hoveredLink = getHoveredDialogLink(k.mousePos());
+    const hoveredClose = isDialogCloseHovered(k.mousePos());
     if (root && root.style) {
-      root.style.cursor = hoveredLink ? "pointer" : "crosshair";
+      root.style.cursor = hoveredLink || hoveredClose ? "pointer" : "crosshair";
     }
     if (mouseDown) {
       const world = getMouseWorld();
@@ -417,10 +422,23 @@ export async function startGame(options = {}) {
   });
 
 
-  const dialogHeight = 120;
-  const dialogWidth = k.width() - 32;
-  const dialogX = 16;
-  const dialogY = k.height() - dialogHeight - 16;
+  const dialogWidth = Math.min(k.width() - 32, 560);
+  const dialogHeight = Math.min(Math.max(210, k.height() * 0.42), 320);
+  const dialogX = (k.width() - dialogWidth) / 2;
+  const dialogY = (k.height() - dialogHeight) / 2;
+  const closeWidth = 112;
+  const closeHeight = 38;
+  const closeX = dialogX + (dialogWidth - closeWidth) / 2;
+  const closeY = dialogY + dialogHeight - closeHeight - 18;
+
+  const dialogOverlay = add([
+    rect(k.width(), k.height()),
+    pos(0, 0),
+    color(4, 7, 12),
+    opacity(0.55),
+    fixed(),
+    z(999),
+  ]);
 
   const dialogBg = add([
     rect(dialogWidth, dialogHeight),
@@ -441,8 +459,8 @@ export async function startGame(options = {}) {
   ]);
 
   const dialogText = add([
-    text("", { size: 12, width: dialogWidth - 36 }),
-    pos(dialogX + 18, dialogY + 20),
+    text("", { size: 16, width: dialogWidth - 48, lineSpacing: 6 }),
+    pos(dialogX + 24, dialogY + 30),
     color(220, 230, 245),
     fixed(),
     z(1002),
@@ -450,37 +468,56 @@ export async function startGame(options = {}) {
 
   const dialogLinks = Array.from({ length: 4 }, () =>
     add([
-      text("", { size: 13, width: dialogWidth - 36 }),
-      pos(dialogX + 18, dialogY + 44),
+      text("", { size: 14, width: dialogWidth - 48 }),
+      pos(dialogX + 24, dialogY + 80),
       color(120, 200, 255),
       fixed(),
       z(1002),
     ]),
   );
+  const dialogCloseBg = add([
+    rect(closeWidth, closeHeight, { radius: 7 }),
+    pos(closeX, closeY),
+    color(70, 145, 205),
+    outline(2, k.rgb(190, 230, 255)),
+    fixed(),
+    z(1002),
+  ]);
+  const dialogCloseText = add([
+    text(language === "tr" ? "Kapat" : "Close", { size: 15 }),
+    pos(closeX + closeWidth / 2, closeY + closeHeight / 2),
+    anchor("center"),
+    color(255, 255, 255),
+    fixed(),
+    z(1003),
+  ]);
   let activeDialogLinks = [];
+  let dialogVisible = false;
+  let dismissedInteractionId = null;
 
   function setDialogVisible(visible) {
+    dialogVisible = visible;
+    dialogOverlay.hidden = !visible;
     dialogBg.hidden = !visible;
     dialogAccent.hidden = !visible;
     dialogText.hidden = !visible;
+    dialogCloseBg.hidden = !visible;
+    dialogCloseText.hidden = !visible;
     for (const linkNode of dialogLinks) {
-      linkNode.hidden = !visible;
+      linkNode.hidden = !visible || !linkNode.text;
     }
   }
 
   setDialogVisible(false);
 
-  function showDialogMessage(message, options = {}) {
+  function showDialogMessage(message) {
     const { title, body } = splitMessage(message ?? "");
-    const content =
-      options.inlineTitle && title && body
-        ? `${title}\n${body}`
-        : (body || title);
+    const content = body || title;
     const { textBody, links } = splitDialogLinks(content);
     dialogText.text = textBody;
     activeDialogLinks = links;
 
-    let linkY = dialogY + 74;
+    let linkY = dialogY + 112;
     for (let i = 0; i < dialogLinks.length; i++) {
       const linkNode = dialogLinks[i];
       const link = links[i];
@@ -490,12 +527,31 @@ export async function startGame(options = {}) {
         continue;
       }
       linkNode.text = link.label;
-      linkNode.pos = vec2(dialogX + 18, linkY);
+      linkNode.pos = vec2(dialogX + 24, linkY);
       linkNode.hidden = false;
-      linkY += 15;
+      linkY += 22;
     }
 
     setDialogVisible(Boolean(content));
+  }
+
+  function isDialogCloseHovered(screenPos) {
+    if (!dialogVisible) return false;
+    return (
+      screenPos.x >= closeX &&
+      screenPos.x <= closeX + closeWidth &&
+      screenPos.y >= closeY &&
+      screenPos.y <= closeY + closeHeight
+    );
+  }
+
+  function closeDialog() {
+    if (activeInteraction) {
+      dismissedInteractionId = activeInteraction.id;
+    } else {
+      stickyMessage = null;
+    }
+    setDialogVisible(false);
   }
 
   function getHoveredDialogLink(screenPos) {
@@ -546,6 +602,7 @@ export async function startGame(options = {}) {
 
     if (!activeInteraction) {
       lastPortalKey = null;
+      dismissedInteractionId = null;
       if (stickyMessage) {
         showDialogMessage(stickyMessage);
       } else {
@@ -572,9 +629,11 @@ export async function startGame(options = {}) {
     }
 
     stickyMessage = null;
-    showDialogMessage(activeInteraction.message ?? "", {
-      inlineTitle: activeInteraction.textKey?.startsWith("skill.") ?? false,
-    });
+    if (dismissedInteractionId === activeInteraction.id) {
+      setDialogVisible(false);
+      return;
+    }
+    showDialogMessage(activeInteraction.message ?? "");
   });
 
   onKeyPress("enter", () => {
@@ -798,17 +857,7 @@ function tiledInteractionToRuntime(obj, { interactionsData, textsData, language 
   const bounds = getTiledObjectBounds(obj);
   const { center } = bounds;
 
-  return {
-    id: obj.id,
-    message,
-    url,
-    center,
-    bounds,
-    type,
-    targetMap,
-    targetSpawn,
-    textKey,
-  };
+  return { id: obj.id, message, url, center, bounds, type, targetMap, targetSpawn };
 }
 
 function distanceToBounds(p, bounds) {
@@ -841,6 +890,12 @@ function splitDialogLinks(body) {
       continue;
     }
 
+    if (line.startsWith("Mail: ")) {
+      const value = line.slice("Mail: ".length).trim();
+      links.push({ label: "Email", href: `mailto:${value}`, action: "copy", value });
+      continue;
+    }
+
     if (line.startsWith("GitHub: ")) {
       const value = line.slice("GitHub: ".length).trim();
       links.push({ label: "GitHub", href: normalizeExternalHref(value) });
@@ -850,12 +905,6 @@ function splitDialogLinks(body) {
     if (line.startsWith("LinkedIn: ")) {
       const value = line.slice("LinkedIn: ".length).trim();
       links.push({ label: "LinkedIn", href: normalizeExternalHref(value) });
-      continue;
-    }
-
-    if (line.startsWith("Medium: ")) {
-      const value = line.slice("Medium: ".length).trim();
-      links.push({ label: "Medium", href: normalizeExternalHref(value) });
       continue;
     }
 

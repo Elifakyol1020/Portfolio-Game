@@ -5,6 +5,14 @@ html, body, #root {
   padding: 0;
 }
 
+.app-shell {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #0c0e12;
+}
+
 .game-root {
   width: 100%;
   height: 100%;
@@ -26,4 +34,163 @@ html, body, #root {
   border: none;
   border-radius: 0;
   box-shadow: none;
+}
+
+.game-controls {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top));
+  right: max(14px, env(safe-area-inset-right));
+  z-index: 10;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.control-button {
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 13px;
+  border: 2px solid rgba(255, 255, 255, 0.84);
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(32, 39, 51, 0.9), rgba(12, 16, 23, 0.9));
+  color: #f6fbff;
+  box-shadow:
+    0 9px 22px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.13);
+  cursor: pointer;
+  font: 700 13px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0;
+  backdrop-filter: blur(8px);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.control-button:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(180deg, rgba(48, 59, 75, 0.94), rgba(18, 24, 34, 0.94));
+}
+
+.control-button:focus-visible {
+  outline: 3px solid #78c7ff;
+  outline-offset: 3px;
+}
+
+.language-control {
+  position: relative;
+}
+
+.language-button {
+  min-width: 88px;
+}
+
+.language-globe {
+  width: 18px;
+  height: 18px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.menu-chevron {
+  font-size: 12px;
+  opacity: 0.75;
+  transition: transform 160ms ease;
+}
+
+.menu-chevron.is-open {
+  transform: rotate(180deg);
+}
+
+.language-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 152px;
+  padding: 6px;
+  border: 1px solid rgba(198, 226, 255, 0.65);
+  border-radius: 12px;
+  background: rgba(13, 18, 26, 0.96);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.38);
+  backdrop-filter: blur(12px);
+}
+
+.language-option {
+  width: 100%;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 11px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #eaf4ff;
+  cursor: pointer;
+  font: 650 13px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.language-option:hover,
+.language-option:focus-visible {
+  outline: none;
+  background: rgba(111, 190, 255, 0.16);
+}
+
+.language-option.is-selected {
+  color: #aee0ff;
+  background: rgba(92, 177, 245, 0.12);
+}
+
+.music-button {
+  min-width: 104px;
+}
+
+.music-button[aria-pressed="true"] {
+  border-color: #8ee8a3;
+  color: #dfffe2;
+  background: linear-gradient(180deg, rgba(31, 83, 52, 0.92), rgba(16, 48, 30, 0.92));
+}
+
+.music-icon {
+  width: 18px;
+  font-size: 18px;
+}
+
+.music-status {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8b96a5;
+  box-shadow: 0 0 0 3px rgba(139, 150, 165, 0.12);
+}
+
+.music-button[aria-pressed="true"] .music-status {
+  background: #8ff5a3;
+  box-shadow: 0 0 8px rgba(108, 255, 141, 0.8);
+}
+
+@media (max-width: 520px) {
+  .game-controls {
+    top: max(10px, env(safe-area-inset-top));
+    right: max(10px, env(safe-area-inset-right));
+    gap: 6px;
+  }
+
+  .control-button {
+    height: 38px;
+    padding: 0 10px;
+  }
+
+  .language-button {
+    min-width: 78px;
+  }
+
+  .music-button {
+    min-width: 92px;
+  }
 }
