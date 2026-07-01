@@ -26,6 +26,7 @@ export async function startGame(options = {}) {
   const {
     mapUrl = defaultMapUrl,
     spawnName = null,
+    initialPosition = null,
     initialMessageKey = null,
     root = document.body,
     debug = false,
@@ -33,6 +34,7 @@ export async function startGame(options = {}) {
     zoom = 2.4,
     playerSpeed = 110,
     language = "tr",
+    onPlayerPositionChange = null,
     onPortal = null,
     onError = null,
   } = options;
@@ -251,7 +253,6 @@ export async function startGame(options = {}) {
       }),
     ) ?? [];
 
-
   const spawnLayer = findObjectLayerAny(tiledMap, ["spawn", "player_spawn", "spawns"]);
 
   const spawnCandidates = spawnLayer?.objects ?? [];
@@ -266,8 +267,13 @@ export async function startGame(options = {}) {
       y: tiledMap.tileheight,
     };
 
+  const startPosition =
+    Number.isFinite(initialPosition?.x) && Number.isFinite(initialPosition?.y)
+      ? initialPosition
+      : spawn;
+
   const player = add([
-    pos(spawn.x, spawn.y),
+    pos(startPosition.x, startPosition.y),
     anchor("center"),
     area({ shape: new k.Rect(k.vec2(-5, -5), 10, 10) }),
     body({ gravityScale: 0 }),
@@ -280,6 +286,9 @@ export async function startGame(options = {}) {
     },
   ]);
 
+  if (typeof onPlayerPositionChange === "function") {
+    onPlayerPositionChange({ x: player.pos.x, y: player.pos.y });
+  }
 
   let collisionCooldown = 0;
   player.onCollide("wall", (_wall, col) => {
@@ -333,6 +342,7 @@ export async function startGame(options = {}) {
       }
       return;
     }
+    if (dialogVisible) return;
     mouseDown = true;
     pressWorld = getMouseWorld();
     mouseTarget = pressWorld;
@@ -349,7 +359,7 @@ export async function startGame(options = {}) {
     if (root && root.style) {
       root.style.cursor = hoveredLink || hoveredClose ? "pointer" : "crosshair";
     }
-    if (mouseDown) {
+    if (mouseDown && !dialogVisible) {
       const world = getMouseWorld();
       if (pressWorld && world.dist(pressWorld) >= DRAG_START_PX) {
         if (!mouseTarget || world.dist(mouseTarget) > 2) {
@@ -370,6 +380,13 @@ export async function startGame(options = {}) {
     }
     const cw = getMouseWorld();
     cursor.pos = cw;
+
+    if (dialogVisible) {
+      mouseTarget = null;
+      mouseDown = false;
+      animTime = 0;
+      return;
+    }
 
     const dir = vec2(0, 0);
     if (k.isKeyDown("left") || k.isKeyDown("a")) dir.x -= 1;
@@ -419,17 +436,36 @@ export async function startGame(options = {}) {
     const px = clamp(player.pos.x, 6, mapPixelWidth - 6);
     const py = clamp(player.pos.y, 6, mapPixelHeight - 6);
     player.pos = vec2(px, py);
+    if (typeof onPlayerPositionChange === "function") {
+      onPlayerPositionChange({ x: player.pos.x, y: player.pos.y });
+    }
   });
 
 
-  const dialogWidth = Math.min(k.width() - 32, 560);
-  const dialogHeight = Math.min(Math.max(210, k.height() * 0.42), 320);
+  const compactDialog = k.width() <= 520 || k.height() <= 480;
+  const dialogMargin = compactDialog ? 12 : 24;
+  const dialogWidth = Math.min(
+    k.width() - dialogMargin * 2,
+    compactDialog ? 520 : 640,
+  );
+  const preferredDialogHeight = Math.max(
+    compactDialog ? 260 : 300,
+    k.height() * (compactDialog ? 0.84 : 0.62),
+  );
+  const dialogHeight = Math.min(
+    k.height() - dialogMargin * 2,
+    compactDialog ? 390 : 440,
+    preferredDialogHeight,
+  );
   const dialogX = (k.width() - dialogWidth) / 2;
   const dialogY = (k.height() - dialogHeight) / 2;
-  const closeWidth = 112;
-  const closeHeight = 38;
+  const dialogPadding = compactDialog ? 16 : 24;
+  const closeWidth = compactDialog ? 104 : 120;
+  const closeHeight = compactDialog ? 34 : 40;
   const closeX = dialogX + (dialogWidth - closeWidth) / 2;
-  const closeY = dialogY + dialogHeight - closeHeight - 18;
+  const closeY =
+    dialogY + dialogHeight - closeHeight - (compactDialog ? 12 : 18);
+  const titleY = dialogY + (compactDialog ? 20 : 26);
 
   const dialogOverlay = add([
     rect(k.width(), k.height()),
@@ -458,9 +494,25 @@ export async function startGame(options = {}) {
     z(1001),
   ]);
 
+  const dialogTitle = add([
+    text("", {
+      size: compactDialog ? 16 : 20,
+      width: dialogWidth - dialogPadding * 2,
+      lineSpacing: 2,
+    }),
+    pos(dialogX + dialogPadding, titleY),
+    color(137, 210, 255),
+    fixed(),
+    z(1002),
+  ]);
+
   const dialogText = add([
-    text("", { size: 16, width: dialogWidth - 48, lineSpacing: 6 }),
-    pos(dialogX + 24, dialogY + 30),
+    text("", {
+      size: compactDialog ? 13 : 16,
+      width: dialogWidth - dialogPadding * 2,
+      lineSpacing: compactDialog ? 3 : 4,
+    }),
+    pos(dialogX + dialogPadding, titleY),
     color(220, 230, 245),
     fixed(),
     z(1002),
@@ -468,8 +520,11 @@ export async function startGame(options = {}) {
 
   const dialogLinks = Array.from({ length: 4 }, () =>
     add([
-      text("", { size: 14, width: dialogWidth - 48 }),
-      pos(dialogX + 24, dialogY + 80),
+      text("", {
+        size: compactDialog ? 11 : 14,
+        width: dialogWidth - dialogPadding * 2,
+      }),
+      pos(dialogX + dialogPadding, titleY),
       color(120, 200, 255),
       fixed(),
       z(1002),
@@ -500,6 +555,7 @@ export async function startGame(options = {}) {
     dialogOverlay.hidden = !visible;
     dialogBg.hidden = !visible;
     dialogAccent.hidden = !visible;
+    dialogTitle.hidden = !visible || !dialogTitle.text;
     dialogText.hidden = !visible;
     dialogCloseBg.hidden = !visible;
     dialogCloseText.hidden = !visible;
@@ -514,10 +570,39 @@ export async function startGame(options = {}) {
     const { title, body } = splitMessage(message ?? "");
     const content = body || title;
     const { textBody, links } = splitDialogLinks(content);
+    dialogTitle.text = body ? title : "";
     dialogText.text = textBody;
     activeDialogLinks = links;
 
-    let linkY = dialogY + 112;
+    const contentWidth = dialogWidth - dialogPadding * 2;
+    const titleSize = compactDialog ? 16 : 20;
+    const titleLines = dialogTitle.text
+      ? estimateWrappedLineCount(dialogTitle.text, contentWidth, titleSize)
+      : 0;
+    const bodyY =
+      titleLines > 0
+        ? titleY + titleLines * (titleSize + 2) + (compactDialog ? 8 : 12)
+        : titleY;
+    const linksHeight =
+      links.length * (compactDialog ? 18 : 22) + (links.length ? 8 : 0);
+    const availableBodyHeight = Math.max(28, closeY - 12 - bodyY - linksHeight);
+    const fittedText = fitDialogText({
+      value: textBody,
+      width: contentWidth,
+      height: availableBodyHeight,
+      compact: compactDialog,
+    });
+    dialogText.textSize = fittedText.size;
+    dialogText.lineSpacing = fittedText.lineSpacing;
+    dialogText.width = contentWidth;
+    dialogText.pos = vec2(dialogX + dialogPadding, bodyY);
+
+    let linkY =
+      bodyY +
+      (textBody
+        ? Math.min(availableBodyHeight, fittedText.height) +
+          (compactDialog ? 6 : 10)
+        : 0);
     for (let i = 0; i < dialogLinks.length; i++) {
       const linkNode = dialogLinks[i];
       const link = links[i];
@@ -527,9 +612,10 @@ export async function startGame(options = {}) {
         continue;
       }
       linkNode.text = link.label;
-      linkNode.pos = vec2(dialogX + 24, linkY);
+      linkNode.textSize = compactDialog ? 11 : 14;
+      linkNode.pos = vec2(dialogX + dialogPadding, linkY);
       linkNode.hidden = false;
-      linkY += 22;
+      linkY += compactDialog ? 18 : 22;
     }
 
     setDialogVisible(Boolean(content));
@@ -573,7 +659,7 @@ export async function startGame(options = {}) {
   let lastPortalKey = null;
   let lastPortalAt = 0;
   const INTERACTION_TRIGGER_DISTANCE = 2;
-  const initialPlayerPos = vec2(spawn.x, spawn.y);
+  const initialPlayerPos = vec2(startPosition.x, startPosition.y);
   const initialMessage =
     resolveText(textsData, initialMessageKey, language) ?? null;
   let stickyMessage = initialMessage;
@@ -857,7 +943,18 @@ function tiledInteractionToRuntime(obj, { interactionsData, textsData, language 
   const bounds = getTiledObjectBounds(obj);
   const { center } = bounds;
 
-  return { id: obj.id, message, url, center, bounds, type, targetMap, targetSpawn };
+  return {
+    id: obj.id,
+    area,
+    textKey,
+    message,
+    url,
+    center,
+    bounds,
+    type,
+    targetMap,
+    targetSpawn,
+  };
 }
 
 function distanceToBounds(p, bounds) {
@@ -946,6 +1043,35 @@ function fallbackCopyText(value) {
 
 function estimateDialogLinkWidth(value) {
   return value.length * 7.2;
+}
+
+function estimateWrappedLineCount(value, width, fontSize) {
+  if (!value) return 0;
+  const charsPerLine = Math.max(1, Math.floor(width / (fontSize * 0.58)));
+  return value.split("\n").reduce((total, line) => {
+    return total + Math.max(1, Math.ceil(line.length / charsPerLine));
+  }, 0);
+}
+
+function fitDialogText({ value, width, height, compact }) {
+  const sizes = compact ? [14, 13, 12, 11, 10] : [16, 15, 14, 13, 12, 11];
+
+  for (const size of sizes) {
+    const lineSpacing = size <= 11 ? 2 : compact ? 3 : 4;
+    const lines = estimateWrappedLineCount(value, width, size);
+    const renderedHeight = lines * (size + lineSpacing);
+    if (renderedHeight <= height) {
+      return { size, lineSpacing, height: renderedHeight };
+    }
+  }
+
+  const size = sizes[sizes.length - 1];
+  const lineSpacing = 2;
+  return {
+    size,
+    lineSpacing,
+    height: estimateWrappedLineCount(value, width, size) * (size + lineSpacing),
+  };
 }
 
 function resolveText(textsData, textKey, language) {

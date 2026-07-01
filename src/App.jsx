@@ -45,6 +45,8 @@ function App() {
   const gameRootRef = useRef(null);
   const musicRef = useRef(null);
   const languageMenuRef = useRef(null);
+  const playerPositionRef = useRef(null);
+  const hasStartedRef = useRef(false);
   const [currentMap, setCurrentMap] = useState("portfolio");
   const [currentSpawn, setCurrentSpawn] = useState(null);
   const [language, setLanguage] = useState(() => {
@@ -63,20 +65,31 @@ function App() {
         gameRootRef.current.replaceChildren();
         const mapKey = normalizeMapKey(currentMap);
         const mapUrl = MAP_BY_KEY[mapKey] ?? MAP_BY_KEY.portfolio;
+        const savedPosition =
+          playerPositionRef.current?.map === mapKey
+            ? playerPositionRef.current
+            : null;
 
         stop = await startGame({
           mapUrl,
           spawnName: currentSpawn ?? undefined,
+          initialPosition: savedPosition,
           initialMessageKey:
-            mapKey === "portfolio" && currentSpawn == null ? "intro.start" : null,
+            !hasStartedRef.current && mapKey === "portfolio" && currentSpawn == null
+              ? "intro.start"
+              : null,
           root: gameRootRef.current,
           scale: 1,
           zoom: 2.4,
           debug: false,
           language,
+          onPlayerPositionChange: ({ x, y }) => {
+            playerPositionRef.current = { map: mapKey, x, y };
+          },
           onPortal: ({ targetMap, targetSpawn }) => {
             const nextMap = normalizeMapKey(targetMap);
             if (!MAP_BY_KEY[nextMap]) return;
+            playerPositionRef.current = null;
             setCurrentMap(nextMap);
             setCurrentSpawn(targetSpawn ?? null);
           },
@@ -84,6 +97,7 @@ function App() {
             console.error(err);
           },
         });
+        hasStartedRef.current = true;
       } catch (e) {
         console.error(e);
       }
@@ -140,7 +154,9 @@ function App() {
 
     const startMusic = () => {
       musicRef.current?.start().catch((error) => {
-        console.warn("Background music could not start.", error);
+        if (error?.name !== "NotAllowedError") {
+          console.warn("Background music could not start.", error);
+        }
       });
     };
 
