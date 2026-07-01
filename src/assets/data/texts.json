@@ -1,12 +1,12 @@
 {
   "intro.start": {
     "tr": {
-      "title": "Merhaba",
-      "text": "Bu harita benim yazılım yolculuğumu anlatıyor.\nHaritayı keşfettikçe farklı alanlarda benimle ilgili detaylar göreceksin.\nMesaj olan yerlerde bıraktığım mektupları okuyarak hikayemi daha yakından tanıyabilirsin."
+      "title": "Keşfetmeye Hoş Geldin",
+      "text": "Bu harita, yazılım yolculuğumu keşfedilebilir küçük bir dünyaya dönüştürüyor.\nYollardaki mektuplara yaklaşarak hikâyemi, deneyimlerimi ve projelerimi okuyabilirsin.\nEvin ve okulun kapılarından içeri girebilir, odaları gezebilir ve saklı detayları keşfedebilirsin.\nSkill tarlasında ise Frontend, Backend, Mobil, DevOps ve diğer teknik alanlarda kullandığım teknolojiler seni bekliyor.\nHazırsan pencereyi kapat ve keşfetmeye başla!"
     },
     "en": {
-      "title": "Welcome",
-      "text": "This map tells the story of my software journey.\nAs you explore it, you will see different details about me in different areas.\nYou can get to know my story better by reading the letters I left in the message spots."
+      "title": "Welcome to My World",
+      "text": "This map turns my software journey into a small world you can explore.\nWalk up to the letters along the paths to discover my story, experience and projects.\nYou can enter the house and school, explore their rooms and find the details hidden inside.\nThe skill field introduces the technologies I use across Frontend, Backend, Mobile, DevOps and more.\nClose this window when you are ready and begin exploring!"
     }
   },
   "player.spawn": {
@@ -22,11 +22,11 @@
   "about.me": {
     "tr": {
       "title": "Ben Kimim",
-      "text": "Ben Elif Akyol, 21 yaşındayım.\nİnönü Üniversitesi Yazılım Mühendisliği öğrencisiyim.\nYazılımla ilgileniyor, öğrenmeye ve üretmeye devam ediyorum.\nBu harita da bu yolculuğun bir parçası."
+      "text": "Ben Elif Akyol, 21 yaşındayım.\nİnönü Üniversitesi Yazılım Mühendisliği bölümünden mezun oldum.\nYazılımla ilgileniyor, öğrenmeye ve üretmeye devam ediyorum.\nBu harita da bu yolculuğun bir parçası."
     },
     "en": {
       "title": "About Me",
-      "text": "My name is Elif Akyol and I am 21 years old.\nI am a Software Engineering student at İnönü University.\nI am interested in software and I keep learning and building.\nThis map is also a part of that journey."
+      "text": "My name is Elif Akyol and I am 21 years old.\nI graduated from the Software Engineering department at İnönü University.\nI am interested in software and I keep learning and building.\nThis map is also a part of that journey."
     }
   },
   "about.me.house": {
@@ -42,11 +42,11 @@
   "school.sign": {
     "tr": {
       "title": "İnönü Üniversitesi",
-      "text": "İnönü Üniversitesi Yazılım Mühendisliği öğrencisiyim.\nBu yıl mezun oluyorum.\nÖğrendiklerimi projelerle pekiştirip kendimi geliştirmeye devam ediyorum."
+      "text": "İnönü Üniversitesi Yazılım Mühendisliği bölümünden mezun oldum.\nÜniversite hayatım boyunca öğrendiklerimi projelerle pekiştirdim.\nŞimdi üretmeye ve kendimi geliştirmeye devam ediyorum."
     },
     "en": {
       "title": "İnönü University",
-      "text": "I am a Software Engineering student at İnönü University.\nI am graduating this year.\nI keep improving myself by turning what I learn into real projects."
+      "text": "I graduated from the Software Engineering department at İnönü University.\nThroughout university, I reinforced what I learned by building projects.\nI continue creating and improving myself."
     }
   },
   "about.me.school": {
